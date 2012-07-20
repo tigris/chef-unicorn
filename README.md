@@ -19,12 +19,12 @@ Defaults are listed as well. If you require more than 1 unicorn script (e.g. you
 1 app), then simply set node['unicorn'] to an array of these hashes.
 
 * **node['unicorn']['app\_root']** _(no default, required attribute!)_ - 'The root of your unicorn app.
-* **node['unicorn']['rack\_env']** _(default: production)_ - The rack env to be passed to unicorn.
-* **node['unicorn']['pid']** _(default: #{unicorn::app\_root}/tmp/pids/unicorn.pid)_ - The file path for the unicorn pid.
-* **node['unicorn']['config']** _(default: #{unicorn::app\_root}/config/unicorn.rb)_ - The file path for the unicorn config.
-* **node['unicorn']['service']** _(default: unicorn-#{unicorn::rack\_env})_ - The identifier for this unicorn.
-* **node['unicorn']['command']** _(default: cd #{unicorn::app\_root} && bundle exec unicorn\_rails -D -E #{unicorn::rack\_env} -c #{unicorn::config})_ - The command used to start unicorn.
-* **node['unicorn']['user']** _(default: root)_ - The user to start the master unicorn as.
+* **node['unicorn']['rack\_env']** _(default: `production`)_ - The rack env to be passed to unicorn.
+* **node['unicorn']['pid']** _(default: `$APP_ROOT/tmp/pids/unicorn.pid`)_ - The file path for the unicorn pid.
+* **node['unicorn']['config']** _(default: `$APP_ROOT/config/unicorn.rb`)_ - The file path for the unicorn config.
+* **node['unicorn']['service']** _(default: `unicorn-$RACK_ENV`)_ - The identifier for this unicorn.
+* **node['unicorn']['command']** _(default: `cd $APP_ROOT && bundle exec unicorn_rails -D -E $RACK_ENV -c $CONFIG`)_ - The command used to start unicorn.
+* **node['unicorn']['user']** _(default: `root`)_ - The user to start the master unicorn as.
 
 # Examples #
 
