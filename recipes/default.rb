@@ -2,6 +2,11 @@
 configs = node['unicorn'].is_a?(Array) ? node['unicorn'] : [node['unicorn']]
 
 configs.each do |config|
+  # Make sure the config defaults come across for each unicorn instance
+  %w(rack_env user pid config service command).each do |k|
+    config[k] ||= node.default['unicorn'][k]
+  end
+
   # Configure defaults, tricky since some defaults are dependant on others and we have interpolation!
   parsed_pid     = config['pid']    .is_a?(Proc) ? config['pid']    .call(config['app_root']) : config['pid']
   parsed_config  = config['config'] .is_a?(Proc) ? config['config'] .call(config['app_root']) : config['config']
