@@ -1,0 +1,37 @@
+##
+# Unicorn config for <%= @identifier %>
+# Managed by Chef - Local Changes will be obliterated
+##
+
+user "<%= @user %>"<%= @group ? %Q(, "#{@group}") : '' %>
+timeout <%= @worker_timeout %>
+preload_app <%= @preload_app %>
+worker_processes <%= @worker_processes %>
+pid '<%= @pid %>'
+<% @listen.each do |listen| %>
+listen "<%= listen[0] %>"<%= listen[1] ? %Q(, "#{listen[1]}") : '' %>
+<% end %>
+<% if @working_directory %>
+working_directory '<%= @working_directory %>'
+<% end %>
+<% if @before_exec %>
+before_exec do |server|
+  <%= @before_exec %>
+end
+<% end %>
+<% if @before_fork %>
+before_fork do |server, worker|
+  <%= @before_fork %>
+end
+<% end %>
+<% if @after_fork %>
+after_fork do |server, worker|
+  <%= @after_fork %>
+end
+<% end %>
+<% if @stderr_path %>
+stderr_path '<%= @stderr_path %>'
+<% end %>
+<% if @stdout_path %>
+stdout_path '<%= @stdout_path %>'
+<%- end %>
