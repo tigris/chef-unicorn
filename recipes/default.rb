@@ -68,4 +68,8 @@ node['unicorn']['installs'].each do |install|
     mode '755'
     notifies :restart, resources(:service => parsed_service), :delayed
   end
+
+  service parsed_service do
+    action :start
+  end
 end
