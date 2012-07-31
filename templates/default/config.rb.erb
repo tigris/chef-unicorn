@@ -9,7 +9,7 @@ preload_app <%= @preload_app %>
 worker_processes <%= @worker_processes %>
 pid '<%= @pid %>'
 <% @listen.each do |listen| %>
-listen "<%= listen[0] %>"<%= listen[1] ? %Q(, "#{listen[1]}") : '' %>
+listen <%= listen[0] %><%= listen[1] ? %Q(, #{listen[1]}) : '' %>
 <% end %>
 <% if @working_directory %>
 working_directory '<%= @working_directory %>'
